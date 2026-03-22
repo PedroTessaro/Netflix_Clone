@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
+        
+        getTrendingMovies()
     }
     
     
@@ -52,6 +54,13 @@ class HomeViewController: UIViewController {
             UIBarButtonItem(image: UIImage(systemName: "play.rectange"), style: .plain, target: self, action: nil)
         ]
         navigationController?.navigationBar.tintColor = .white
+    }
+    
+    
+    private func getTrendingMovies() {
+        APICaller.shared.getTrendingMovies { _ in
+            print("Deu tudo certo!")
+        }
     }
     
     
