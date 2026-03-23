@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sectionTitles: [String] = ["Trending Movies", "Popular", "Trending TV", "Upcoming Movies", "Top Rated"]
+    let sectionTitles: [String] = ["Trending movies", "Trending tv", "Popular", "Upcoming movies", "Top rated"]
 
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
         
-        getTrendingMovies()
+        fetchData()
     }
     
     
@@ -57,9 +57,17 @@ class HomeViewController: UIViewController {
     }
     
     
-    private func getTrendingMovies() {
-        APICaller.shared.getTrendingMovies { _ in
-            print("Deu tudo certo!")
+    private func fetchData() {
+//        APICaller.shared.getTrendingMovies { results in
+//            switch results {
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        APICaller.shared.getTrendingTvs { result in
+            
         }
     }
     
@@ -120,7 +128,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         headerContentConfig.text                        = sectionTitles[section]
         headerContentConfig.textProperties.font         = UIFont.boldSystemFont(ofSize: 20)
         headerContentConfig.textProperties.color        = .white
-        headerContentConfig.textProperties.transform    = .lowercase
+        headerContentConfig.textProperties.transform    = .none
         header.contentConfiguration = headerContentConfig
     }
 }
